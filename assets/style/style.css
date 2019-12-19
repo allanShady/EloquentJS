@@ -1,0 +1,20 @@
+.btn {
+    border: 1px dotted limegreen ;
+    color: limegreen;
+    font-size: 40px;
+    background-color: whitesmoke;
+}
+
+.p {
+    border: 1px dotted lightseagreen;
+}
+
+.show {
+    color: crimson;
+    visibility: visible;
+}    
+
+.line {
+    color: teal;
+    border: 3px;
+}
