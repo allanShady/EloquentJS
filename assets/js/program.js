@@ -73,12 +73,6 @@ const samples = () => {
     let vector1 =  new Vec(2, 2);
     let vector2 = new Vec(2, 2);
 
-    for (let i = 0; i < vector1.content.length; i++) {
-       for (let j = 0; j < vector1.content[i].length; j++) {
-            vector1.content[i][j] = i + j;
-        }
-    }
-
     console.log(vector1);
 }
 
@@ -92,7 +86,7 @@ class Vec {
         for(let i = 0; i < y; i++) {
             let element = [];
             for(let j = 0; j < x; j++) {
-                element[j] = undefined;
+                element[j] = i + j;
             }
             this.content[i] = element;
         }
