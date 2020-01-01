@@ -60,12 +60,58 @@ const samples = () => {
     console.log(tem.celsius);
 
     console.log('INHERITANCE');
-    let matrix = new SymmetricMatrix(5, (x, y) => `${x},${y}`);
-    console.log(matrix.get(2, 3));
-    console.log(new SymmetricMatrix(2) instanceof SymmetricMatrix);
+    let matrix = new SymmetricMatrix(2, (x, y) => `${x},${y}`);
+    console.log(new Matrix(2, 2) instanceof SymmetricMatrix);
+
+    const vec = [
+        [1, 3], 
+        [6, 8]
+    ]
+
+    console.log('vec m');
+
+    let vector1 =  new Vec(2, 2);
+    let vector2 = new Vec(2, 2);
+
+    for (let i = 0; i < vector1.content.length; i++) {
+       for (let j = 0; j < vector1.content[i].length; j++) {
+            vector1.content[i][j] = i + j;
+        }
+    }
+
+    console.log(vector1);
 }
 
 //classes 
+class Vec {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.content = [];
+
+        for(let i = 0; i < y; i++) {
+            let element = [];
+            for(let j = 0; j < x; j++) {
+                element[j] = undefined;
+            }
+            this.content[i] = element;
+        }
+    }
+
+    plus(vec) {
+        let result = [];
+
+        for(i = 0; i < this.length; i++) {
+            res
+        }
+
+    }
+
+    minus(vec) {
+
+    }
+}
+
 class Matrix {
     constructor(width, height, element = (x, y) => undefined) {
         this.width = width;
