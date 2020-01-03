@@ -68,9 +68,10 @@ const samples = () => {
     let vector1 =  new Vec(2, 2);
     let vector2 = new Vec(2, 2);
 
-    console.log(vector1);
-    console.log(vector2);
-    console.log(vector1.plus(vector2));
+    console.log('The first operand', vector1);
+    console.log('The secund operand', vector2);
+    console.log('The plus rersult', vector1.plus(vector2));
+    console.log('The minus rersult', vector1.minus(vector2));
 }
 
 //classes 
@@ -92,12 +93,12 @@ class Vec {
     plus(vec) {
         let result = new Vec(this.x, this.y);   
         
-        result.x = this.x + vec.x;
-        result.y = this.y + vec.y;
+        result.x = sum(this.x, vec.x);
+        result.y = sum(this.y, vec.y);
 
         for(let i = 0; i < this.content.length; i++) {
             for(let j = 0; j < this.content[i].length; j++) {
-                result.content[i][j] = this.content[i][j] + vec.content[i][j];
+                result.content[i][j] = sum(this.content[i][j], vec.content[i][j]);
             }
         }
 
@@ -105,9 +106,23 @@ class Vec {
     }
 
     minus(vec) {
+        let result = new Vec(this.x, this.y);   
+        
+        result.x = substract(this.x, vec.x);
+        result.y = substract(this.y, vec.y);
 
+        for(let i = 0; i < this.content.length; i++) {
+            for(let j = 0; j < this.content[i].length; j++) {
+                result.content[i][j] = substract(this.content[i][j], vec.content[i][j]);
+            }
+        }
+
+        return result;
     }
 }
+
+const sum = (b, c) => b + c;
+const substract = (b, c) => b - c;
 
 class Matrix {
     constructor(width, height, element = (x, y) => undefined) {
