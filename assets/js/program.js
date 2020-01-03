@@ -63,17 +63,14 @@ const samples = () => {
     let matrix = new SymmetricMatrix(2, (x, y) => `${x},${y}`);
     console.log(new Matrix(2, 2) instanceof SymmetricMatrix);
 
-    const vec = [
-        [1, 3], 
-        [6, 8]
-    ]
-
     console.log('vec m');
 
     let vector1 =  new Vec(2, 2);
     let vector2 = new Vec(2, 2);
 
     console.log(vector1);
+    console.log(vector2);
+    console.log(vector1.plus(vector2));
 }
 
 //classes 
@@ -93,12 +90,18 @@ class Vec {
     }
 
     plus(vec) {
-        let result = [];
+        let result = new Vec(this.x, this.y);   
+        
+        result.x = this.x + vec.x;
+        result.y = this.y + vec.y;
 
-        for(i = 0; i < this.length; i++) {
-            res
+        for(let i = 0; i < this.content.length; i++) {
+            for(let j = 0; j < this.content[i].length; j++) {
+                result.content[i][j] = this.content[i][j] + vec.content[i][j];
+            }
         }
 
+        return result;
     }
 
     minus(vec) {
