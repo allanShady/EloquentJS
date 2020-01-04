@@ -72,9 +72,46 @@ const samples = () => {
     console.log('The secund operand', vector2);
     console.log('The plus rersult', vector1.plus(vector2));
     console.log('The minus rersult', vector1.minus(vector2));
+
+    let group = new Group();
+
+    group.add(1);
+    group.add(2);
+    group.add(2);
+    console.log(group.elements);
+    console.log('Grop has 1?', group.has(1));
+    console.log('Grop has 3?', group.has(3));
+    console.log('Deleting 1 ...', group.delete(1));
+    console.log('The new elements are.', group.elements);
 }
 
 //classes 
+
+class Group {
+    constructor() {
+        this.elements = [];
+    }
+
+    add(element) {
+        if(!this.has(element))
+            this.elements.push(element);
+    } 
+
+    delete(element) {        
+        this.elements.reduce(element => element !== element); 
+    }
+
+    has(element) {
+        return this.elements.includes(element);
+    }
+
+    static from() {
+        this.elements.forEach(element => {
+            console.log(element);
+        });
+    }
+}
+
 class Vec {
     constructor(x, y) {
         this.x = x;
@@ -138,9 +175,11 @@ class Matrix {
 
         console.log(this.content);
     }
+
     get(x, y) {
         return this.content[y * this.width + x];
     }
+    
     set(x, y, value) {
         this.content[y * this.width + x] = value;
     }
