@@ -97,15 +97,8 @@ class Group {
             this.elements.push(element);
     } 
 
-    delete(elementv, f) {        
-        let aux = [];
-       
-        this.elements.forEach(element => {
-            if( this.has(element) && element != elementv)
-                aux.push(element);
-        });
-
-        return this.elements = aux;
+    delete(value) {        
+        this.elements = this.elements.filter(element => element !== value)
     }
 
     has(element) {
