@@ -72,6 +72,7 @@ const samples = () => {
     console.log('The secund operand', vector2);
     console.log('The plus rersult', vector1.plus(vector2));
     console.log('The minus rersult', vector1.minus(vector2));
+    console.log('The distance', vector1.length);
 
     let group = new Group();
 
@@ -155,6 +156,10 @@ class Vec {
         }
 
         return result;
+    }
+
+    get length() {
+        return Math.round(Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2)));
     }
 }
 
