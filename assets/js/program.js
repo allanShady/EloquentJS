@@ -1,6 +1,6 @@
 const samples = () => {
-    let whiteRabbit = {type: 'white', speak};
-    let hungryRabbit = {type: 'hungry rabbit', speak};
+    let whiteRabbit = { type: 'white', speak };
+    let hungryRabbit = { type: 'hungry rabbit', speak };
 
     whiteRabbit.speak('I could use carrot right now');
     //Explicit call of this
@@ -23,7 +23,7 @@ const samples = () => {
         If you pass null to Object.create, the resulting object will not
         derive from Object.prototype and can safely be used as a map. */
     console.log(`Class Map`);
-    
+
     let ages = new Map();
     ages.set('Allan', 26);
     ages.set('Kevin', 24);
@@ -36,7 +36,7 @@ const samples = () => {
     //Simbols 
     let sym = Symbol('kk');
     console.log(sym === Symbol('kk'));
-    
+
     //Interator interface using symbols
     let okIterator = 'Ok'[Symbol.iterator]();
     console.log(okIterator.next());
@@ -46,7 +46,7 @@ const samples = () => {
     //geters & setters
     const veryfingSize = {
         get size() {
-            return Math.round(Math.random()*100);
+            return Math.round(Math.random() * 100);
         }
     }
 
@@ -65,7 +65,7 @@ const samples = () => {
 
     console.log('vec m');
 
-    let vector1 =  new Vec(2, 2);
+    let vector1 = new Vec(2, 2);
     let vector2 = new Vec(2, 2);
 
     console.log('The first operand', vector1);
@@ -84,6 +84,7 @@ const samples = () => {
     console.log('Grop has 3?', group.has(3));
     console.log('Deleting 1 ...', group.delete(1));
     console.log('The new elements are.', group.elements);
+    console.log(group.from(group.elements[Symbol.iterator]()));
 }
 
 //classes 
@@ -94,11 +95,11 @@ class Group {
     }
 
     add(element) {
-        if(!this.has(element))
+        if (!this.has(element))
             this.elements.push(element);
-    } 
+    }
 
-    delete(value) {        
+    delete(value) {
         this.elements = this.elements.filter(element => element !== value)
     }
 
@@ -106,10 +107,17 @@ class Group {
         return this.elements.includes(element);
     }
 
-    static from() {
-        this.elements.forEach(element => {
-            console.log(element);
-        });
+    from(elementsIterator) {
+
+        let result = [], aux; 
+
+        do {
+            aux = elementsIterator.next();
+            result.push(aux.value)
+        }
+        while (!aux.done);
+
+        return result;
     }
 }
 
@@ -119,9 +127,9 @@ class Vec {
         this.y = y;
         this.content = [];
 
-        for(let i = 0; i < y; i++) {
+        for (let i = 0; i < y; i++) {
             let element = [];
-            for(let j = 0; j < x; j++) {
+            for (let j = 0; j < x; j++) {
                 element[j] = i + j;
             }
             this.content[i] = element;
@@ -129,13 +137,13 @@ class Vec {
     }
 
     plus(vec) {
-        let result = new Vec(this.x, this.y);   
-        
+        let result = new Vec(this.x, this.y);
+
         result.x = sum(this.x, vec.x);
         result.y = sum(this.y, vec.y);
 
-        for(let i = 0; i < this.content.length; i++) {
-            for(let j = 0; j < this.content[i].length; j++) {
+        for (let i = 0; i < this.content.length; i++) {
+            for (let j = 0; j < this.content[i].length; j++) {
                 result.content[i][j] = sum(this.content[i][j], vec.content[i][j]);
             }
         }
@@ -144,13 +152,13 @@ class Vec {
     }
 
     minus(vec) {
-        let result = new Vec(this.x, this.y);   
-        
+        let result = new Vec(this.x, this.y);
+
         result.x = substract(this.x, vec.x);
         result.y = substract(this.y, vec.y);
 
-        for(let i = 0; i < this.content.length; i++) {
-            for(let j = 0; j < this.content[i].length; j++) {
+        for (let i = 0; i < this.content.length; i++) {
+            for (let j = 0; j < this.content[i].length; j++) {
                 result.content[i][j] = substract(this.content[i][j], vec.content[i][j]);
             }
         }
@@ -171,7 +179,7 @@ class Matrix {
         this.width = width;
         this.height = height;
         this.content = [];
-        
+
         for (let y = 0; y < height; y++) {
             for (let x = 0; x < width; x++) {
                 this.content[y * width + x] = element(x, y);
@@ -184,7 +192,7 @@ class Matrix {
     get(x, y) {
         return this.content[y * this.width + x];
     }
-    
+
     set(x, y, value) {
         this.content[y * this.width + x] = value;
     }
@@ -193,17 +201,17 @@ class Matrix {
 class SymmetricMatrix extends Matrix {
     constructor(size, element = (x, y) => undefined) {
         super(size, size, (x, y) => {
-        
-            if (x < y) 
+
+            if (x < y)
                 return element(y, x);
-            else 
+            else
                 return element(x, y);
         });
     }
 
     set(x, y, value) {
         super.set(x, y, value);
-    
+
         if (x != y) {
             super.set(y, x, value);
         }
@@ -220,8 +228,8 @@ class Temperature {
     }
 
     set fahrenheit(value) {
-        this.celsius = (value - 32) / 1.8; 
-    } 
+        this.celsius = (value - 32) / 1.8;
+    }
 
     static fromFahrenheit(value) {
         return new Temperature((value - 32) / 1.8);
