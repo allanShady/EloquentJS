@@ -1,7 +1,7 @@
 # EloquentJS
-Soluction in Javascript of challenges from (Eloquent JavaScript)[https://eloquentjavascript.net/]
+Soluction in Javascript of challenges from [Eloquent JavaScript](https://eloquentjavascript.net/)
 
-(Eloquent JavaScript)[https://eloquentjavascript.net/] is one of the that I highly recommend for every one who wants learn JavaScript.
+[loquent JavaScript](https://eloquentjavascript.net/) is one of the that I highly recommend for every one who wants learn JavaScript.
 The book also include the programing fundamentals. 
 
 ### To Dos
